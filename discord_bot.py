@@ -102,8 +102,8 @@ async def send_tweet_to_discord(tweet):
 
         cleaned_raw_content = re.sub(r'https://t.co/\w+', '', tweet.rawContent)
 
-        content_prefix1 = "Новый твит от"
-        content_prefix2 = "nekokan_chu ретвитнула твит от"
+        content_prefix1 = "@everyone Новый твит от"
+        content_prefix2 = "@everyone nekokan_chu ретвитнула твит от"
         if tweet.user.username == "nekokan_chu":
             content = f"{content_prefix1} {tweet.user.username}:\n\n{cleaned_raw_content}\n\n"
         else:

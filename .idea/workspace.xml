@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="first commit">
+    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="delete redundant">
+      <change afterPath="$PROJECT_DIR$/qq" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/discord_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discord_bot.py" afterDir="false" />
     </list>
@@ -15,6 +16,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mitchelded&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="490ae234-af87-4bce-a4b3-dd78a011c62d" />
+        <option name="url" value="https://github.com/Mitchelded/Fumino-Tamaki-Bot" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -65,7 +80,8 @@
       <option name="presentableId" value="Default" />
       <updated>1710675971818</updated>
       <workItem from="1710675977844" duration="1528000" />
-      <workItem from="1710677724590" duration="812000" />
+      <workItem from="1710677724590" duration="5344000" />
+      <workItem from="1710686190395" duration="45000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -107,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710677411057</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="delete redundant">
+      <option name="closed" value="true" />
+      <created>1710679198048</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710679198048</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="delete redundant" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete redundant" />
   </component>
 </project>
