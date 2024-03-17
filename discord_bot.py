@@ -22,7 +22,6 @@ async def ping(ctx):
     message = await ctx.send("Pinging...")
     end_time = time.time()
     latency = (end_time - start_time) * 1000  # Latency in milliseconds
-
     # System load
     cpu_load = psutil.cpu_percent()
     mem_load = psutil.virtual_memory().percent
