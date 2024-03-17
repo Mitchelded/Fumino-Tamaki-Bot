@@ -14,6 +14,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 channel_id = None
 tweet_loop_task = None
 
+
 @bot.hybrid_command(name="ping",
                     description="Показать задержку и нагрузку системы")
 async def ping(ctx):
@@ -102,24 +103,24 @@ async def send_tweet_to_discord(tweet):
 
         cleaned_raw_content = re.sub(r'https://t.co/\w+', '', tweet.rawContent)
 
-        content_prefix1 = "@everyone Новый твит от"
+        content_prefix1 = "@everyone 🎉 **Новый твит от"
         content_prefix2 = "@everyone nekokan_chu ретвитнула твит от"
         if tweet.user.username == "nekokan_chu":
-            content = f"{content_prefix1} {tweet.user.username}:\n\n{cleaned_raw_content}\n\n"
+            content = f"{content_prefix1} {tweet.user.username}:\n\n*\"{cleaned_raw_content}\"*\n\n"
         else:
-            content = f"{content_prefix2} {tweet.user.username}:\n\n{cleaned_raw_content}\n\n"
+            content = f"{content_prefix2} {tweet.user.username}:\n\n*\"{cleaned_raw_content}\"*\n\n"
         if len(tweet.links) > 0:
             content += f"Cсылки из твита: "
             for link in tweet.links:
-                content += f"{link.url}\n"
+                content += f"[Ссылка]({link.url})\n"
         # Include quoted tweet content if available
         if tweet.quotedTweet:
             quoted_raw_content = re.sub(r'https://t.co/\w+', '', tweet.quotedTweet.rawContent)
-            content += f"Цитата:\n\n{quoted_raw_content}\n\n"
+            content += f"**Цитата:**\n\n*\"{quoted_raw_content}\"*\n\n"
             if len(tweet.quotedTweet.links) > 0:
                 content += f"Cсылки из Цитаты: "
                 for link in tweet.quotedTweet.links:
-                    content += f"{link.url}\n"
+                    content += f"[Ссылка]({link.url})\n"
 
         if translate:
             content = translate_tweets.translate_language("ja", "ru", content)
@@ -151,13 +152,12 @@ async def tweet_loop(ctx: commands.Context, translate=False):
             print(f"An error occurred: {e}")
 
         # Sleep for 1 hour before sending the next tweet
-        await asyncio.sleep(3600)
+        await asyncio.sleep(1800)
 
 
 with open('discord.yaml', 'r') as file:
     discord_data = yaml.safe_load(file)
 
 discord_bot = discord_data.get('discord_bot', [])
-
-
-bot.run(discord_bot.get('bot_token'))
+token = discord_bot.get('bot_token')
+bot.run(token)
