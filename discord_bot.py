@@ -14,7 +14,6 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 channel_id = None
 tweet_loop_task = None
 
-
 @bot.hybrid_command(name="ping",
                     description="Показать задержку и нагрузку системы")
 async def ping(ctx):
