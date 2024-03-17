@@ -147,9 +147,6 @@ async def tweet_loop(ctx: commands.Context, translate=False):
                 if translate:
                     await send_tweet_to_discord(tweet)
 
-            # Send a confirmation message to the channel
-            await ctx.send("Tweet sent!")
-
         except Exception as e:
             print(f"An error occurred: {e}")
 
