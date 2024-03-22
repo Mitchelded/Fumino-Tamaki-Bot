@@ -113,7 +113,7 @@ async def send_tweet_to_discord(tweet):
         if len(tweet.links) > 0:
             content += f"Cсылки из твита: "
             for link in tweet.links:
-                content += f"[Ссылка]({link.url})\n"
+                content += f"{link.url}\n"
         # Include quoted tweet content if available
         if tweet.quotedTweet is not None:
             quoted_raw_content = re.sub(r'https://t.co/\w+', '', tweet.quotedTweet.rawContent)
@@ -121,12 +121,12 @@ async def send_tweet_to_discord(tweet):
             if len(tweet.quotedTweet.links) > 0:
                 content += f"Cсылки из Цитаты: "
                 for link in tweet.quotedTweet.links:
-                    content += f"[Ссылка]({link.url})\n"
+                    content += f"{link.url}\n"
         if tweet.retweetedTweet  is not None:
             if len(tweet.retweetedTweet.links) > 0:
                 content += f"Cсылки из ретвита: "
                 for link in tweet.retweetedTweet.links:
-                    content += f"[Ссылка]({link.url})\n"
+                    content += f"{link.url}\n"
 
         if translate:
             content = translate_tweets.translate_language("ja", "ru", content)
