@@ -88,12 +88,13 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
 
 async def send_tweet_to_discord(tweet):
     # Load the channel IDs and translation settings from the database
+    global content
     conn = sqlite3.connect('channels.db')
     cursor = conn.cursor()
     cursor.execute("SELECT channel_id, translate FROM channels")
     channels_info = cursor.fetchall()
     conn.close()
-
+    print(tweet)
     for channel_info in channels_info:
         channel_id, translate = channel_info
         channel = bot.get_channel(channel_id)
@@ -104,22 +105,27 @@ async def send_tweet_to_discord(tweet):
         cleaned_raw_content = re.sub(r'https://t.co/\w+', '', tweet.rawContent)
 
         content_prefix1 = "@everyone 🎉 **Новый твит от"
-        content_prefix2 = "@everyone nekokan_chu ретвитнула твит от"
-        if tweet.user.username == "nekokan_chu":
+        content_prefix2 = "@everyone nekokan_chu ретвитнула"
+        if tweet.user.username == "nekokan_chu" and "RT" not in tweet.rawContent:
             content = f"{content_prefix1} {tweet.user.username}:\n\n*\"{cleaned_raw_content}\"*\n\n"
-        else:
-            content = f"{content_prefix2} {tweet.user.username}:\n\n*\"{cleaned_raw_content}\"*\n\n"
+        elif "RT" in tweet.rawContent:
+            content = f"{content_prefix2}:\n\n*\"{cleaned_raw_content.replace("RT", "")}\"*\n\n"
         if len(tweet.links) > 0:
             content += f"Cсылки из твита: "
             for link in tweet.links:
                 content += f"[Ссылка]({link.url})\n"
         # Include quoted tweet content if available
-        if tweet.quotedTweet:
+        if tweet.quotedTweet is not None:
             quoted_raw_content = re.sub(r'https://t.co/\w+', '', tweet.quotedTweet.rawContent)
             content += f"**Цитата:**\n\n*\"{quoted_raw_content}\"*\n\n"
             if len(tweet.quotedTweet.links) > 0:
                 content += f"Cсылки из Цитаты: "
                 for link in tweet.quotedTweet.links:
+                    content += f"[Ссылка]({link.url})\n"
+        if tweet.retweetedTweet  is not None:
+            if len(tweet.retweetedTweet.links) > 0:
+                content += f"Cсылки из ретвита: "
+                for link in tweet.retweetedTweet.links:
                     content += f"[Ссылка]({link.url})\n"
 
         if translate:
