@@ -59,7 +59,7 @@ async def tweet_text_processing_db(user_id, limit=-1, raw=False):
 
     # Close database connection
     conn.close()
-    print("Success")
+    print(f"Success {datetime.now()}")
     return new_tweets
 
 

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Added retweetedTweet and links from there">
+    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Changed the display of links">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discord_bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +47,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.discord_bot.executor": "Run",
+    "Python.twitter_scrapper.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -82,7 +83,7 @@
       <workItem from="1710675977844" duration="1528000" />
       <workItem from="1710677724590" duration="5344000" />
       <workItem from="1710686190395" duration="1039000" />
-      <workItem from="1711120730323" duration="3386000" />
+      <workItem from="1711120730323" duration="3890000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -156,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711123414166</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Changed the display of links">
+      <option name="closed" value="true" />
+      <created>1711124223166</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711124223166</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,9 +188,11 @@
     <MESSAGE value="add ping @everyone" />
     <MESSAGE value="update discord_bot.py" />
     <MESSAGE value="Added retweetedTweet and links from there" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retweetedTweet and links from there" />
+    <MESSAGE value="Changed the display of links" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the display of links" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$discord_bot.coverage" NAME="discord_bot Coverage Results" MODIFIED="1711123232404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711124667955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$discord_bot.coverage" NAME="discord_bot Coverage Results" MODIFIED="1711124690433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
