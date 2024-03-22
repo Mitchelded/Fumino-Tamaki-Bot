@@ -8,6 +8,8 @@ import asyncio
 import psutil
 import time
 import yaml
+import db_create
+import os
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
@@ -42,7 +44,7 @@ async def on_ready():
 
 
 @bot.hybrid_command(name="sync",
-                    description="Синххронизировать команды для их отображения")
+                    description="Синхронизировать команды для их отображения")
 async def sync(ctx: commands.Context):
     try:
         await bot.tree.sync(guild=ctx.guild)
@@ -52,7 +54,7 @@ async def sync(ctx: commands.Context):
 
 
 @bot.hybrid_command(name="start_tweeting",
-                    description="Установить id канала и начать постить твиты в канале, в котором была вприсана команда")
+                    description="Установить id канала и начать постить твиты в канале, в котором была вписана команда")
 async def start_tweeting(ctx: commands.Context, translate: bool = False):
     # Check if the command is invoked by an administrator
     if ctx.message.author.guild_permissions.administrator:
@@ -80,7 +82,7 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
         conn.close()
 
         # Start the tweet loop task
-        tweet_loop_task = asyncio.create_task(tweet_loop(ctx, translate))
+        tweet_loop_task = asyncio.create_task(tweet_loop(translate))
         await ctx.send('Tweet loop started successfully!')
     else:
         await ctx.send('You do not have permission to use this command.')
@@ -89,6 +91,8 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
 async def send_tweet_to_discord(tweet):
     # Load the channel IDs and translation settings from the database
     global content
+    if not os.path.exists('channels.db'):
+        db_create.create_channels_table()
     conn = sqlite3.connect('channels.db')
     cursor = conn.cursor()
     cursor.execute("SELECT channel_id, translate FROM channels")
@@ -96,8 +100,8 @@ async def send_tweet_to_discord(tweet):
     conn.close()
     print(tweet)
     for channel_info in channels_info:
-        channel_id, translate = channel_info
-        channel = bot.get_channel(channel_id)
+        channel_id_from_info, translate = channel_info
+        channel = bot.get_channel(channel_id_from_info)
         if not channel:
             print(f"Channel with ID {channel_id} not found.")
             continue
@@ -122,7 +126,7 @@ async def send_tweet_to_discord(tweet):
                 content += f"Cсылки из Цитаты: "
                 for link in tweet.quotedTweet.links:
                     content += f"{link.url}\n"
-        if tweet.retweetedTweet  is not None:
+        if tweet.retweetedTweet is not None:
             if len(tweet.retweetedTweet.links) > 0:
                 content += f"Cсылки из ретвита: "
                 for link in tweet.retweetedTweet.links:
@@ -144,7 +148,7 @@ async def send_tweet_to_discord(tweet):
         await channel.send(content)
 
 
-async def tweet_loop(ctx: commands.Context, translate=False):
+async def tweet_loop(translate=False):
     while True:
         try:
             # Fetch the tweet using twitter_scrapper_test

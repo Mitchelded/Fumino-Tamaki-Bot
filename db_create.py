@@ -10,7 +10,7 @@ def create_tweet_id_table():
     conn.close()
 
 
-def create_table():
+def create_channels_table():
     conn = sqlite3.connect('channels.db')
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS channels (
@@ -19,7 +19,3 @@ def create_table():
                       translate INTEGER NOT NULL)''')
     conn.commit()
     conn.close()
-
-
-create_table()
-create_tweet_id_table()

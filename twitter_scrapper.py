@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 import pytz
 import sqlite3
 import yaml
-
+import db_create
+import os
 
 async def tweet_text_processing(user_id, limit=-1, raw=False):
     api = API()
@@ -33,7 +34,8 @@ async def tweet_text_processing_db(user_id, limit=-1, raw=False):
     api = API()
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
-
+    if not os.path.exists('tweet_ids.db'):
+        db_create.create_tweet_id_table()
     # Connect to the database
     conn = sqlite3.connect('tweet_ids.db')
     c = conn.cursor()
