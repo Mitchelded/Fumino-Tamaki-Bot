@@ -61,7 +61,8 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
         global tweet_loop_task
 
         channel = ctx.channel  # Get the channel where the command was invoked
-
+        if not os.path.exists('channels.db'):
+            db_create.create_channels_table()
         # Store channel ID and translation settings in the database
         conn = sqlite3.connect('channels.db')
         cursor = conn.cursor()
@@ -84,6 +85,30 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
         # Start the tweet loop task
         tweet_loop_task = asyncio.create_task(tweet_loop(translate))
         await ctx.send('Tweet loop started successfully!')
+    else:
+        await ctx.send('You do not have permission to use this command.')
+
+
+@bot.hybrid_command(name="stop_tweeting",
+                    description="Удалить id канала и перестать постить твиты в канале, в котором была вписана команда")
+async def stop_tweeting(ctx: commands.Context):
+    # Check if the command is invoked by an administrator
+    if ctx.message.author.guild_permissions.administrator:
+        global tweet_loop_task
+
+        channel = ctx.channel  # Get the channel where the command was invoked
+        if not os.path.exists('channels.db'):
+            db_create.create_channels_table()
+        # Store channel ID and translation settings in the database
+        conn = sqlite3.connect('channels.db')
+        cursor = conn.cursor()
+
+        # Delete the record for this channel, if it exists
+        cursor.execute("DELETE FROM channels WHERE channel_id = ?", (channel.id,))
+
+        conn.commit()
+        conn.close()
+        await ctx.send('Tweet loop stopped successfully!')
     else:
         await ctx.send('You do not have permission to use this command.')
 
