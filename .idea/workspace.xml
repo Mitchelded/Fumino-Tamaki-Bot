@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Add autoupdate every 24 hours">
+    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Added os.path.join to all paths">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_create.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discord_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discord_bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/twitter_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +86,7 @@
       <workItem from="1710686190395" duration="1039000" />
       <workItem from="1711120730323" duration="4804000" />
       <workItem from="1711171604145" duration="187000" />
-      <workItem from="1711268782499" duration="3043000" />
+      <workItem from="1711268782499" duration="3656000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -218,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711270687056</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added os.path.join to all paths">
+      <option name="closed" value="true" />
+      <created>1711271987727</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1711271987727</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +254,8 @@
     <MESSAGE value="Added a command to stop posting tweets" />
     <MESSAGE value="After restarting there is no need to enter commands anymore" />
     <MESSAGE value="Add autoupdate every 24 hours" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add autoupdate every 24 hours" />
+    <MESSAGE value="Added os.path.join to all paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added os.path.join to all paths" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711271950793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

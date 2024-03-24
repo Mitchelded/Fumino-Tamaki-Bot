@@ -7,8 +7,9 @@ import yaml
 import db_create
 import os
 
+
 async def tweet_text_processing(user_id, limit=-1, raw=False):
-    api = API()
+    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
 
@@ -31,7 +32,7 @@ async def tweet_text_processing(user_id, limit=-1, raw=False):
 
 
 async def tweet_text_processing_db(user_id, limit=-1, raw=False):
-    api = API()
+    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
     if not os.path.exists(os.path.join(os.path.dirname(__file__), 'tweet_ids.db')):
@@ -66,7 +67,7 @@ async def tweet_text_processing_db(user_id, limit=-1, raw=False):
 
 
 async def tweet_photo_processing(user_id, limit=-1):
-    api = API()  # Ваш экземпляр API
+    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
     processed_tweet_ids = set()
     new_photos_urls = []  # Список для хранения ссылок на новые фотографии
 
@@ -85,7 +86,8 @@ async def tweet_photo_processing(user_id, limit=-1):
 
 
 async def tweet_video_processing(user_id, limit=-1, ):
-    api = API()  # Ваш экземпляр API
+    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
+
     processed_tweet_ids = set()
     new_video_urls = []  # Список для хранения ссылок на новые видео
 
