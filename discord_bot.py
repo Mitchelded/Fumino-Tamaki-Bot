@@ -10,6 +10,7 @@ import time
 import yaml
 import db_create
 import os
+import subprocess
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
@@ -46,7 +47,7 @@ async def on_ready():
     global is_tweeting
     if is_tweeting:
         tweet_loop_task = asyncio.create_task(tweet_loop())
-
+    auto_update_task = asyncio.create_task(auto_update())
 
 @bot.hybrid_command(name="sync",
                     description="Синхронизировать команды для их отображения")
@@ -195,8 +196,22 @@ async def tweet_loop(translate=False):
         await asyncio.sleep(1800)
 
 
+async def auto_update():
+    while True:
+        try:
+            # Run git pull command to update the bot code
+            subprocess.run(["git", "pull", "https://github.com/Mitchelded/Fumino-Tamaki-Bot.git", "master"])
+            print("Bot code updated successfully!")
+        except Exception as e:
+            print(f"An error occurred during auto-update: {e}")
+
+        # Sleep for 24 hours before checking for updates again
+        await asyncio.sleep(86400)  # 24 hours in seconds
+
+
 with open('config.yaml', 'r') as file:
     discord_data = yaml.safe_load(file)
+
 
 discord_bot = discord_data.get('discord_bot', [])
 token = discord_bot.get('bot_token')
