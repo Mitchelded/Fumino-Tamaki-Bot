@@ -46,8 +46,9 @@ async def on_ready():
     # Check if tweet_loop was active before bot restart, and restart it if necessary
     global is_tweeting
     if is_tweeting:
-        tweet_loop_task = asyncio.create_task(tweet_loop())
-    auto_update_task = asyncio.create_task(auto_update())
+        await asyncio.create_task(tweet_loop())
+    await asyncio.create_task(auto_update())
+
 
 @bot.hybrid_command(name="sync",
                     description="Синхронизировать команды для их отображения")
@@ -67,10 +68,10 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
         global tweet_loop_task, is_tweeting
 
         channel = ctx.channel  # Get the channel where the command was invoked
-        if not os.path.exists('channels.db'):
+        if not os.path.exists(os.path.join(os.path.dirname(__file__), 'channels.db')):
             db_create.create_channels_table()
         # Store channel ID and translation settings in the database
-        conn = sqlite3.connect('channels.db')
+        conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'channels.db'))
         cursor = conn.cursor()
 
         # Check if there's an existing record for this channel
@@ -103,10 +104,10 @@ async def stop_tweeting(ctx: commands.Context):
         global tweet_loop_task
 
         channel = ctx.channel  # Get the channel where the command was invoked
-        if not os.path.exists('channels.db'):
+        if not os.path.exists(os.path.join(os.path.dirname(__file__), 'channels.db')):
             db_create.create_channels_table()
         # Store channel ID and translation settings in the database
-        conn = sqlite3.connect('channels.db')
+        conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'channels.db'))
         cursor = conn.cursor()
 
         # Delete the record for this channel, if it exists
@@ -122,9 +123,9 @@ async def stop_tweeting(ctx: commands.Context):
 async def send_tweet_to_discord(tweet):
     # Load the channel IDs and translation settings from the database
     global content
-    if not os.path.exists('channels.db'):
+    if not os.path.exists(os.path.join(os.path.dirname(__file__), 'channels.db')):
         db_create.create_channels_table()
-    conn = sqlite3.connect('channels.db')
+    conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'channels.db'))
     cursor = conn.cursor()
     cursor.execute("SELECT channel_id, translate FROM channels")
     channels_info = cursor.fetchall()
@@ -209,9 +210,8 @@ async def auto_update():
         await asyncio.sleep(86400)  # 24 hours in seconds
 
 
-with open('config.yaml', 'r') as file:
+with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as file:
     discord_data = yaml.safe_load(file)
-
 
 discord_bot = discord_data.get('discord_bot', [])
 token = discord_bot.get('bot_token')

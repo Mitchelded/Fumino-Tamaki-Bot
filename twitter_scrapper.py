@@ -34,10 +34,10 @@ async def tweet_text_processing_db(user_id, limit=-1, raw=False):
     api = API()
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
-    if not os.path.exists('tweet_ids.db'):
+    if not os.path.exists(os.path.join(os.path.dirname(__file__), 'tweet_ids.db')):
         db_create.create_tweet_id_table()
     # Connect to the database
-    conn = sqlite3.connect('tweet_ids.db')
+    conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'tweet_ids.db'))
     c = conn.cursor()
 
     last_tweet_date_moscow = datetime.now(pytz.timezone('Europe/Moscow')) - timedelta(days=1)
@@ -104,9 +104,9 @@ async def tweet_video_processing(user_id, limit=-1, ):
 
 
 async def main():
-    api = API()  # or API("path-to.db") - default is `accounts.db`
+    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
 
-    with open('config.yaml', 'r') as file:
+    with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as file:
         accounts_data = yaml.safe_load(file)
 
     accounts = accounts_data.get('accounts', [])

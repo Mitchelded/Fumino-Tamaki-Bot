@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="After restarting there is no need to enter commands anymore">
+    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Add autoupdate every 24 hours">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_create.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/discord_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discord_bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +88,7 @@
       <workItem from="1710686190395" duration="1039000" />
       <workItem from="1711120730323" duration="4804000" />
       <workItem from="1711171604145" duration="187000" />
-      <workItem from="1711268782499" duration="1705000" />
+      <workItem from="1711268782499" duration="3043000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -208,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711270367195</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add autoupdate every 24 hours">
+      <option name="closed" value="true" />
+      <created>1711270687055</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711270687056</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,10 +247,11 @@
     <MESSAGE value="Combined several yaml into one file" />
     <MESSAGE value="Added a command to stop posting tweets" />
     <MESSAGE value="After restarting there is no need to enter commands anymore" />
-    <option name="LAST_COMMIT_MESSAGE" value="After restarting there is no need to enter commands anymore" />
+    <MESSAGE value="Add autoupdate every 24 hours" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add autoupdate every 24 hours" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711268943343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$discord_bot.coverage" NAME="discord_bot Coverage Results" MODIFIED="1711270590471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711271950793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$discord_bot.coverage" NAME="discord_bot Coverage Results" MODIFIED="1711271845779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
