@@ -106,7 +106,7 @@ async def tweet_video_processing(user_id, limit=-1, ):
 async def main():
     api = API()  # or API("path-to.db") - default is `accounts.db`
 
-    with open('account.yaml', 'r') as file:
+    with open('config.yaml', 'r') as file:
         accounts_data = yaml.safe_load(file)
 
     accounts = accounts_data.get('accounts', [])

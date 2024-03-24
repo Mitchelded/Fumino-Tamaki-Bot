@@ -165,7 +165,7 @@ async def tweet_loop(translate=False):
         await asyncio.sleep(1800)
 
 
-with open('discord.yaml', 'r') as file:
+with open('config.yaml', 'r') as file:
     discord_data = yaml.safe_load(file)
 
 discord_bot = discord_data.get('discord_bot', [])
