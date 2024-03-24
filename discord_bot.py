@@ -15,6 +15,7 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
 channel_id = None
 tweet_loop_task = None
+is_tweeting = True
 
 
 @bot.hybrid_command(name="ping",
@@ -41,6 +42,10 @@ async def on_ready():
         print(f"Synced {len(synced)} commands")
     except Exception as e:
         print(e)
+    # Check if tweet_loop was active before bot restart, and restart it if necessary
+    global is_tweeting
+    if is_tweeting:
+        tweet_loop_task = asyncio.create_task(tweet_loop())
 
 
 @bot.hybrid_command(name="sync",
@@ -58,7 +63,7 @@ async def sync(ctx: commands.Context):
 async def start_tweeting(ctx: commands.Context, translate: bool = False):
     # Check if the command is invoked by an administrator
     if ctx.message.author.guild_permissions.administrator:
-        global tweet_loop_task
+        global tweet_loop_task, is_tweeting
 
         channel = ctx.channel  # Get the channel where the command was invoked
         if not os.path.exists('channels.db'):
@@ -81,7 +86,7 @@ async def start_tweeting(ctx: commands.Context, translate: bool = False):
 
         conn.commit()
         conn.close()
-
+        is_tweeting = True
         # Start the tweet loop task
         tweet_loop_task = asyncio.create_task(tweet_loop(translate))
         await ctx.send('Tweet loop started successfully!')
