@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="Added os.path.join to all paths">
+    <list default="true" id="d0aa4e6f-ac23-46d8-a470-855a7d9f882a" name="Changes" comment="If no accounts are found in accounts.db, then all accounts from config.yaml will be entered">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_create.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translate_tweets.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate_tweets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/twitter_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitter_scrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +100,7 @@
       <workItem from="1711120730323" duration="4804000" />
       <workItem from="1711171604145" duration="187000" />
       <workItem from="1711268782499" duration="3724000" />
-      <workItem from="1711472512525" duration="2516000" />
+      <workItem from="1711472512525" duration="3059000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -249,7 +246,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711272633762</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1711475097814</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1711475097814</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added spaces">
+      <option name="closed" value="true" />
+      <created>1711475146754</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1711475146754</updated>
+    </task>
+    <task id="LOCAL-00021" summary="If no accounts are found in accounts.db, then all accounts from config.yaml will be entered">
+      <option name="closed" value="true" />
+      <created>1711475222080</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1711475222080</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,10 +313,13 @@
     <MESSAGE value="After restarting there is no need to enter commands anymore" />
     <MESSAGE value="Add autoupdate every 24 hours" />
     <MESSAGE value="Added os.path.join to all paths" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added os.path.join to all paths" />
+    <MESSAGE value="Updated README.md" />
+    <MESSAGE value="Added spaces" />
+    <MESSAGE value="If no accounts are found in accounts.db, then all accounts from config.yaml will be entered" />
+    <option name="LAST_COMMIT_MESSAGE" value="If no accounts are found in accounts.db, then all accounts from config.yaml will be entered" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711474924558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$twitter_scrapper.coverage" NAME="twitter_scrapper Coverage Results" MODIFIED="1711475567910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Fumino_Tamaki_Bot$discord_bot.coverage" NAME="discord_bot Coverage Results" MODIFIED="1711272576604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

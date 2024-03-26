@@ -11,11 +11,15 @@ api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("pat
 
 
 def check_accounts_db_empty():
-    conn = sqlite3.connect("accounts.db")
-    c = conn.cursor()
-    c.execute("SELECT count(*) FROM accounts")
-    count = c.fetchone()[0]
-    conn.close()
+    if os.path.exists(os.path.join(os.path.dirname(__file__), 'accounts.db')):
+        conn = sqlite3.connect("accounts.db")
+        c = conn.cursor()
+        c.execute("SELECT count(*) FROM accounts")
+        count = c.fetchone()[0]
+        conn.close()
+    else:
+        count = 0
+
     return count == 0
 
 
@@ -35,8 +39,8 @@ async def add_accounts_to_db():
 
         # Добавляем аккаунты в пул и выполняем вход
         for i, account in enumerate(accounts):
-            await api.pool.add_account(account.get('username'), account.get('password'), account.get('email'),
-                                       account.get('password'),
+            await api.pool.add_account(account.get('username'), account.get('password_twitter'), account.get('email'),
+                                       account.get('password_email'),
                                        cookies=cookies_list[i])
 
         await api.pool.login_all()
