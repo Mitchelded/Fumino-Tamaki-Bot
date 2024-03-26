@@ -1,34 +1,91 @@
-# Twitter Scraper
+# Twitter-Discord Bot
 
-This project is an asynchronous Python script for extracting data from Twitter using the twscrape library. With this script, you can retrieve text tweets, images, and videos from a Twitter user's timeline.
+This is a Python application that fetches tweets from Twitter and posts them to Discord channels. It includes functionalities for translating tweets, processing tweet text, photos, and videos, as well as managing tweet IDs and channel settings.
+
+## Features
+
+- Fetch tweets from a specific Twitter user's timeline.
+- Translate tweets from one language to another.
+- Post tweets, including text, photos, and videos, to Discord channels.
+- Manage tweet IDs to avoid duplicate postings.
+- Support for asynchronous processing using asyncio.
+
+## Requirements
+
+- Python 3.x
+- Required Python packages (install via `pip`):
+  - `discord.py`
+  - `twscrape`
+  - `pytz`
+  - `sqlite3`
+  - `requests`
 
 ## Installation
 
-1. Install the dependencies by running the following command:
+1. Clone the repository:
 
-   ```bash
-   pip install -r requirements.txt
-Ensure you have active Twitter API credentials.
+  ```bash
+  git clone https://github.com/Mitchelded/Fumino-Tamaki-Bot
+  ```
+2. Navigate to the project directory:
 
-Create a configuration file config.yaml containing the credentials required to access the Twitter API. An example configuration can be found in config.example.yaml.
+  ```bash
+  cd Fumino-Tamaki-Bot
+  ```
+3. Install the required packages:
 
-Create the SQLite database tweet_ids.db, which will be used to store processed tweet IDs to avoid duplication.
+  ```bash
+  pip install -r requirements.txt
+  ```
+4. Set up configuration:
+* Create a [config.yaml](config.yaml) file containing your Discord bot token and any other configuration settings.
 
-Usage
-Run the main.py script to fetch data from Twitter. The script retrieves text tweets with the option to save processed IDs in the database to prevent duplication. Separate functions are used for fetching images and videos.
+```bash
+# Example config.yaml
+  accounts:
+  - username: Twitter login №1
+    password: Twitter password №1
+    email: Email linked to Twitter №1
+    cookies:
+      auth_token: auth_token cookies №1
+      ct0: ct0 cookies №1
+  - username: Twitter login №2
+    password: Twitter password №2
+    email: Email linked to Twitter №2
+    cookies:
+      auth_token: auth_token cookies №2
+      ct0: ct0 cookies №2
+  - username: Twitter login №3
+    password: Twitter password №3
+    email: Email linked to Twitter №3
+    cookies:
+      auth_token: auth_token cookies №3
+      ct0: ct0 cookies №3
+  # There can be as many accounts as you like
+discord_bot:
+  bot_token: "Your_Bot_Token"
+  ```
+5. Run the application:
 
-bash
-Copy code
-python main.py
-Additional Information
-This project uses the twscrape library for interacting with the Twitter API.
-To configure extraction parameters and other settings, edit the config.yaml file.
-Please ensure that your use of this script complies with the Twitter API usage rules and does not violate them.
-css
-Copy code
+```bash
+  python discord_bot.py
+  ```
+## Configuration
+* **config.yaml:** Contains Discord bot token and other configuration settings.
+* **channels.db:** This SQLite database file stores information about Discord channels, such as their IDs and translation settings.
+* **tweet_ids.db:** This SQLite database file is used to keep track of processed tweet IDs to avoid duplicate postings.
+* **accounts.db:** This SQLite database by the twscrape library to store twitter account data
 
-This `README.md` file provides installation instructions, usage guidelines, and additional information about the project in English, using Markdown syntax. It offers users a clear description of how to use your script to extract data from Twitter.
+### **_At the moment, the password for the email and twitter account must match_**
+## Usage
+Once the bot is running, use Discord commands to interact with it.
+Supported commands:
+/ping: Display system latency and load.
+/start_tweeting: Start posting tweets to the current Discord channel.
+/stop_tweeting: Stop posting tweets to the current Discord channel.
+/sync: Sync commands for display in the current Discord guild.
+## Contributing
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
 
-
-
-
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
