@@ -44,20 +44,23 @@ This is a Python application that fetches tweets from Twitter and posts them to 
 # Example config.yaml
   accounts:
   - username: Twitter login №1
-    password: Twitter password №1
+    password_twitter: Twitter password №1
     email: Email linked to Twitter №1
+    password_email: Email password №1
     cookies:
       auth_token: auth_token cookies №1
       ct0: ct0 cookies №1
   - username: Twitter login №2
-    password: Twitter password №2
+    password_twitter: Twitter password №2
     email: Email linked to Twitter №2
+    password_email: Email password №2
     cookies:
       auth_token: auth_token cookies №2
       ct0: ct0 cookies №2
   - username: Twitter login №3
-    password: Twitter password №3
+    password_twitter: Twitter password №3
     email: Email linked to Twitter №3
+    password_email: Email password №3
     cookies:
       auth_token: auth_token cookies №3
       ct0: ct0 cookies №3
@@ -65,6 +68,8 @@ This is a Python application that fetches tweets from Twitter and posts them to 
 discord_bot:
   bot_token: "Your_Bot_Token"
   ```
+**_~~At the moment, the password for the email and twitter account must match~~ No longer relevant_**
+
 5. Run the application:
 
 ```bash
@@ -76,7 +81,6 @@ discord_bot:
 * **tweet_ids.db:** This SQLite database file is used to keep track of processed tweet IDs to avoid duplicate postings.
 * **accounts.db:** This SQLite database by the twscrape library to store twitter account data
 
-### **_At the moment, the password for the email and twitter account must match_**
 ## Usage
 Once the bot is running, use Discord commands to interact with it.
 Supported commands:
