@@ -7,9 +7,43 @@ import yaml
 import db_create
 import os
 
+api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
+
+
+def check_accounts_db_empty():
+    conn = sqlite3.connect("accounts.db")
+    c = conn.cursor()
+    c.execute("SELECT count(*) FROM accounts")
+    count = c.fetchone()[0]
+    conn.close()
+    return count == 0
+
+
+async def add_accounts_to_db():
+    if check_accounts_db_empty():
+        with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as file:
+            accounts_data = yaml.safe_load(file)
+
+        accounts = accounts_data.get('accounts', [])
+        cookies_list = []
+
+        # Создаем список куки для каждого аккаунта
+        for account in accounts:
+            cookies = (f"auth_token={account['cookies']['auth_token']}; "
+                       f"ct0={account['cookies']['ct0']}")
+            cookies_list.append(cookies)
+
+        # Добавляем аккаунты в пул и выполняем вход
+        for i, account in enumerate(accounts):
+            await api.pool.add_account(account.get('username'), account.get('password'), account.get('email'),
+                                       account.get('password'),
+                                       cookies=cookies_list[i])
+
+        await api.pool.login_all()
+
 
 async def tweet_text_processing(user_id, limit=-1, raw=False):
-    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
+    await add_accounts_to_db()
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
 
@@ -32,7 +66,7 @@ async def tweet_text_processing(user_id, limit=-1, raw=False):
 
 
 async def tweet_text_processing_db(user_id, limit=-1, raw=False):
-    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
+    await add_accounts_to_db()
     processed_tweet_ids = set()
     new_tweets = []  # List to store rawContent of new tweets
     if not os.path.exists(os.path.join(os.path.dirname(__file__), 'tweet_ids.db')):
@@ -67,7 +101,7 @@ async def tweet_text_processing_db(user_id, limit=-1, raw=False):
 
 
 async def tweet_photo_processing(user_id, limit=-1):
-    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
+    await add_accounts_to_db()
     processed_tweet_ids = set()
     new_photos_urls = []  # Список для хранения ссылок на новые фотографии
 
@@ -86,8 +120,7 @@ async def tweet_photo_processing(user_id, limit=-1):
 
 
 async def tweet_video_processing(user_id, limit=-1, ):
-    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
-
+    await add_accounts_to_db()
     processed_tweet_ids = set()
     new_video_urls = []  # Список для хранения ссылок на новые видео
 
@@ -106,28 +139,6 @@ async def tweet_video_processing(user_id, limit=-1, ):
 
 
 async def main():
-    api = API(os.path.join(os.path.dirname(__file__), 'accounts.db'))  # or API("path-to.db") - default is `accounts.db`
-
-    with open(os.path.join(os.path.dirname(__file__), 'config.yaml'), 'r') as file:
-        accounts_data = yaml.safe_load(file)
-
-    accounts = accounts_data.get('accounts', [])
-    cookies_list = []
-
-    # Создаем список куки для каждого аккаунта
-    for account in accounts:
-        cookies = (f"auth_token={account['cookies']['auth_token']}; "
-                   f"ct0={account['cookies']['ct0']}")
-        cookies_list.append(cookies)
-
-    # Добавляем аккаунты в пул и выполняем вход
-    for i, account in enumerate(accounts):
-        await api.pool.add_account(account.get('username'), account.get('password'), account.get('email'),
-                                   account.get('password'),
-                                   cookies=cookies_list[i])
-
-    await api.pool.login_all()
-
     user_id = 971925378913611776  # nekokan_chu
 
     new_tweets = await tweet_text_processing_db(user_id, 1, True)
